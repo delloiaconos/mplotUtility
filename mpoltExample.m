@@ -8,9 +8,9 @@ y1 = 1.9*x;
 y2 = 2.1*x;
 
 %% Configure PLOTTING
-run( 'pltCONFIGS' );
+run( 'mplotCONFIGS' );
 %% Begin PLOTTING
-run( 'pltBEGIN' );
+run( 'mplotBEGIN' );
 
 
 %%  *********************************************************************   
@@ -48,12 +48,12 @@ xlabel( 'X',  'FontSize'    , pltCnf.Axis.FontSize, ...
 ylabel( 'Y',  'FontSize'    , pltCnf.Axis.FontSize, ...
               'Color'       , pltCnf.Axis.Color );
     
-figsH(end+1) = fig;
+mplotFigs(end+1) = fig;
 clear figName figTitle fig hh ll;
 
 
 
 %% END PLOTTING
-run( 'pltEND' );             
+run( 'mplotEND' );             
 
 

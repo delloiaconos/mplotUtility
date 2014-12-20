@@ -2,47 +2,44 @@
  %                        FIGURE CONFIGURATION
  %  *********************************************************************  
  
-pltCnf.Figure.FontName        = 'Helvetica';
-pltCnf.Figure.FontSize        = 12;
+mplotCnf.Figure.FontName        = 'Helvetica';
+mplotCnf.Figure.FontSize        = 12;
 
  
 %%  *********************************************************************   
  %                         PLOT CONFIGURATION
  %  *********************************************************************  
 
-pltCnf.Plot.LineWidth         = 2;
-pltCnf.Plot.MarkerSize        = 10;
+mplotCnf.Plot.LineWidth         = 2;
+mplotCnf.Plot.MarkerSize        = 10;
 
 
 %%  *********************************************************************   
  %                         AXIS CONFIGURATION
  %  *********************************************************************  
 
-pltCnf.Axis.Color             = 'black'; 
-pltCnf.Axis.FontSize          = 12;
+mplotCnf.Axis.Color             = 'black'; 
+mplotCnf.Axis.FontSize          = 12;
 
 %%  *********************************************************************   
  %                         TITLE CONFIGURATION
  %  *********************************************************************  
 
-pltCnf.Title.FontSize         = 14;
+mplotCnf.Title.FontSize         = 14;
 
 %%  *********************************************************************   
  %                        LEGEND CONFIGURATION
  %  *********************************************************************  
 
-pltCnf.Legend.TextColor       = 'black';
-pltCnf.Legend.FontSize        = 11;
+mplotCnf.Legend.TextColor       = 'black';
+mplotCnf.Legend.FontSize        = 11;
 
-
-
-
-pltCnf.CloseFig               = True;
+mplotCnf.CloseFig               = true;
 
 %%  *********************************************************************   
  %                        OUTPUT CONFIGURATION
  %  *********************************************************************  
 
-pltCnf.SaveAs.Eps             = False;
-pltCnf.SaveAs.Jpg             = Ture;
-pltCnf.SaveAs.Fig             = False;
+mplotCnf.SaveAs.Eps             = false;
+mplotCnf.SaveAs.Jpg             = true;
+mplotCnf.SaveAs.Fig             = false;
