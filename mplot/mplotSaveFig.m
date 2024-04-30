@@ -23,13 +23,13 @@ function mplotSaveFig(fig, outFolder )
     SaveFigAs = { "epsc" };
 
     if ~isa( fig, 'matlab.ui.Figure' )
-        error( "This is not a figure!" );
+        error( "MPLOT ERROR: This is not a figure!\n" );
     end
     
     figName = fig.Name;
 
     if length( figName ) <= 0
-        error( "Figure without 'Name' property!" );
+        error( "MPLOT ERROR: Figure without 'Name' property!" );
     end
 
     for kk=1:length( SaveFigAs ) 

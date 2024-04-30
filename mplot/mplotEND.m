@@ -24,8 +24,7 @@
  %
 
 if( exist( 'mplotOutdir','var') == 0 )
-    disp( 'MPLOT ERROR: Missing variable "mplotOutdir"!\n' );
-    break;
+    error( 'MPLOT ERROR: Missing variable "mplotOutdir"!\n' );
 end
 
 if( exist( mplotOutdir,'dir') == 0 )
