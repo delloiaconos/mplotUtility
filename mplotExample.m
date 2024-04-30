@@ -50,33 +50,20 @@ figName     = 'Example1';
 figTitle    = 'Example 1';
 
 disp( ['-> Plotting: "', figTitle, '"'] );
-fig = figure( 'Name', figName, 'NumberTitle', 'off' );
-hh  = gca;
-set( hh,   'FontName', mplotCnf.Figure.FontName, ...
-           'FontSize', mplotCnf.Figure.FontSize );
 
-plot( x, y1, 'b', 'DisplayName'  , 'I_a', ...
-                  'LineWidth'    , mplotCnf.Plot.LineWidth, ...
-                  'MarkerSize'   , mplotCnf.Plot.MarkerSize );
-hold on;
-plot( x, y2, 'r', 'DisplayName'  , 'I_b', ...
-                  'LineWidth'    , mplotCnf.Plot.LineWidth, ...
-                  'MarkerSize'   , mplotCnf.Plot.MarkerSize );
-
-
-ll = legend('show', 'Location', 'best' );
-set( ll, 'FontSize'   , mplotCnf.Legend.FontSize, ...
-         'TextColor'  , mplotCnf.Legend.TextColor );
-               
-            
-title( figTitle, 'FontSize', mplotCnf.Title.FontSize );
-
-
-xlabel( 'X',  'FontSize'    , mplotCnf.Axis.FontSize, ...
-              'Color'       , mplotCnf.Axis.Color );
-ylabel( 'Y',  'FontSize'    , mplotCnf.Axis.FontSize, ...
-              'Color'       , mplotCnf.Axis.Color );
+fig = figure( 'Name', figName, mplotCnf.opt.Figure{:} );
     
+    plot( x, y1, 'b', 'DisplayName'  , '$I_a$', mplotCnf.opt.Plot{:} );
+    hold on;
+    plot( x, y2, 'r', 'DisplayName'  , '$I_b$', mplotCnf.opt.Plot{:} );
+
+    ll = legend('show', 'Location', 'best' );
+    set( ll, mplotCnf.opt.Legend{:} );
+    set( gca, mplotCnf.opt.Axis{:} );
+    title( figTitle, mplotCnf.opt.Title{:});
+    xlabel( 'X', mplotCnf.opt.Axis{:} );
+    ylabel( 'Y', mplotCnf.opt.Axis{:} );
+        
 mplotSaveFig( fig, mplotOutdir );
     
 clear figName figTitle fig hh ll;

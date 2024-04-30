@@ -23,50 +23,64 @@
  %   @details mplot Configuration file, this script contains every
  %   configuration for Plotting part.
  %
- 
+
 global mplotCnf;
 
 %%  *********************************************************************   
  %                        FIGURE CONFIGURATION
  %  *********************************************************************  
- 
-mplotCnf.Figure.FontName        = 'Helvetica';
-mplotCnf.Figure.FontSize        = 12;
 
- 
+%mplotCnf.Figure.FontName        = 'Helvetica';
+
+mplotCnf.opt.Figure = { 'NumberTitle', 'off', 'Visible', 'on' }; %'WindowStyle', 'docked'
+
 %%  *********************************************************************   
  %                         PLOT CONFIGURATION
  %  *********************************************************************  
 
-mplotCnf.Plot.LineWidth         = 2;
-mplotCnf.Plot.MarkerSize        = 10;
 
+mplotCnf.opt.Plot = { 'LineWidth',  2, ...
+                      'MarkerSize', 10 };
+
+mplotCnf.opt.XLine = { 'interpreter',   'latex', ...
+                       'FontSize',      10, ...
+                       'LabelHorizontalAlignment', 'center'};
 
 %%  *********************************************************************   
  %                         AXIS CONFIGURATION
  %  *********************************************************************  
 
-mplotCnf.Axis.Color             = 'black'; 
-mplotCnf.Axis.FontSize          = 12;
+mplotCnf.opt.Axis =  { 'FontName',  'Times', ...
+                       'FontSize',  12 };
+
+
+mplotCnf.opt.Label = { 'interpreter',   'latex', ...
+                       'FontName',      'Times', ...
+                       'FontSize',      12 };
 
 %%  *********************************************************************   
  %                         TITLE CONFIGURATION
  %  *********************************************************************  
 
-mplotCnf.Title.FontSize         = 14;
+mplotCnf.opt.Title = { 'interpreter',   'latex', ...
+                       'FontName',      'Times', ...
+                       'FontSize',      16 }; 
 
 %%  *********************************************************************   
  %                        LEGEND CONFIGURATION
  %  *********************************************************************  
 
-mplotCnf.Legend.TextColor       = 'black';
-mplotCnf.Legend.FontSize        = 11;
+mplotCnf.opt.Legend = { 'TextColor',    'black', ...
+                        'FontName',     'Times', ...
+                        'FontSize',     12, ... 
+                        'Location',     'best', ...
+                        'interpreter',  'latex' }; 
 
-mplotCnf.CloseFig               = true;
 
 %%  *********************************************************************   
  %                        OUTPUT CONFIGURATION
  %  *********************************************************************  
 
+mplotCnf.CloseFig               = true;
 mplotCnf.SaveFig                = true;
 mplotCnf.SaveFigAs              = { "epsc", "jpg", "fig", "pdf" };
