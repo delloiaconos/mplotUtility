@@ -1,6 +1,8 @@
 mplotUtility
 ============
 
-MATLAB plot utility for automatic save of created figures
-It uses standard plot function of MATLBA adding 3 files to run
-for saving all plots.
+MATLAB Plot Utilities: common configuration and functions to obtain congruent
+figures and automatic save to file created figures handlers.
+It uses standard MATLAB plot function and only 3 files are required to save
+plots.
+
