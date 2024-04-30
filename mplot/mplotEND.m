@@ -24,4 +24,4 @@
  %
 
 
-clear mplotCnf;
+clear mplotcfg;

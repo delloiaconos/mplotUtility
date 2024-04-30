@@ -51,18 +51,18 @@ figTitle    = 'Example 1';
 
 disp( ['-> Plotting: "', figTitle, '"'] );
 
-fig = figure( 'Name', figName, mplotCnf.opt.Figure{:} );
+fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     
-    plot( x, y1, 'b', 'DisplayName'  , '$I_a$', mplotCnf.opt.Plot{:} );
+    plot( x, y1, 'b', 'DisplayName'  , '$I_a$', mplotcfg.opt.Plot{:} );
     hold on;
-    plot( x, y2, 'r', 'DisplayName'  , '$I_b$', mplotCnf.opt.Plot{:} );
+    plot( x, y2, 'r', 'DisplayName'  , '$I_b$', mplotcfg.opt.Plot{:} );
 
     ll = legend('show', 'Location', 'best' );
-    set( ll, mplotCnf.opt.Legend{:} );
-    set( gca, mplotCnf.opt.Axis{:} );
-    title( figTitle, mplotCnf.opt.Title{:});
-    xlabel( 'X', mplotCnf.opt.Axis{:} );
-    ylabel( 'Y', mplotCnf.opt.Axis{:} );
+    set( ll, mplotcfg.opt.Legend{:} );
+    set( gca, mplotcfg.opt.Axis{:} );
+    title( figTitle, mplotcfg.opt.Title{:});
+    xlabel( 'X', mplotcfg.opt.Axis{:} );
+    ylabel( 'Y', mplotcfg.opt.Axis{:} );
         
 mplotSaveFig( fig, mplotOutdir );
     

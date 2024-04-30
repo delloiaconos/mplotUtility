@@ -21,16 +21,16 @@ function mplotSaveFig(figH, outFolder )
     
     SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
 
-    if isempty( find(strcmp(who( 'global' ), 'mplotCnf'), 1) )
-        error( "MPLOT ERROR: Missing configuration 'mplotCnf'!\n" );
+    if isempty( find(strcmp(who( 'global' ), 'mplotcfg'), 1) )
+        error( "MPLOT ERROR: Missing configuration 'mplotcfg'!\n" );
     end
     
-    global mplotCnf;
-    if ~isfield( mplotCnf, 'SaveFig' ) 
-        error( "MPLOT ERROR: Missing configuration field 'mplotCnf.SaveFig'!\n" );
+    global mplotcfg;
+    if ~isfield( mplotcfg, 'SaveFig' ) 
+        error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
     end
 
-    if ~mplotCnf.SaveFig || ~isfield( mplotCnf, 'SaveFigAs' ) 
+    if ~mplotcfg.SaveFig || ~isfield( mplotcfg, 'SaveFigAs' ) 
         return 
     end
 
@@ -52,14 +52,14 @@ function mplotSaveFig(figH, outFolder )
     end
 
 
-    for kk=1:length( mplotCnf.SaveFigAs ) 
-        figType = mplotCnf.SaveFigAs{kk};
+    for kk=1:length( mplotcfg.SaveFigAs ) 
+        figType = mplotcfg.SaveFigAs{kk};
         fName = fullfile( outFolder, sprintf( "%s.%s", figName, SaveFigExt(figType) ) ) ;
         saveas( figH, fName, figType );
     end
     
 
-    if( mplotCnf.CloseFig )
+    if( mplotcfg.CloseFig )
         close( figH );
     end
 
