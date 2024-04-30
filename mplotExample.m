@@ -36,6 +36,8 @@ y2 = 2.1*x;
 
 %% Configure PLOTTING
 run( 'mplotCONFIGS' );
+mplotOutdir = './example/';
+
 %% Begin PLOTTING
 run( 'mplotBEGIN' );
 
@@ -75,13 +77,13 @@ xlabel( 'X',  'FontSize'    , mplotCnf.Axis.FontSize, ...
 ylabel( 'Y',  'FontSize'    , mplotCnf.Axis.FontSize, ...
               'Color'       , mplotCnf.Axis.Color );
     
-mplotFigs(end+1) = fig;
+mplotSaveFig( fig, mplotOutdir );
+    
 clear figName figTitle fig hh ll;
 
 
 
 %% END PLOTTING
-mplotOutdir = './example/';
 run( 'mplotEND' );             
 
 rmpath( './mplot' );

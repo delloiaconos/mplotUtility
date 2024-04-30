@@ -23,7 +23,8 @@
  %   @details mplot Configuration file, this script contains every
  %   configuration for Plotting part.
  %
-
+ 
+global mplotCnf;
 
 %%  *********************************************************************   
  %                        FIGURE CONFIGURATION
@@ -67,6 +68,5 @@ mplotCnf.CloseFig               = true;
  %                        OUTPUT CONFIGURATION
  %  *********************************************************************  
 
-mplotCnf.SaveAs.Eps             = false;
-mplotCnf.SaveAs.Jpg             = true;
-mplotCnf.SaveAs.Fig             = false;
+mplotCnf.SaveFig                = true;
+mplotCnf.SaveFigAs              = { "epsc", "jpg", "fig", "pdf" };

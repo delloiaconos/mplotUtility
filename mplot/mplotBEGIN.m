@@ -22,5 +22,3 @@
  %   @brief   mPlot init file.
  %   @details mPlot init file, this script inits plotting code.
  %
-
-mplotFigs = [];

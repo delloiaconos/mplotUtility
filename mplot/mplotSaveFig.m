@@ -17,25 +17,50 @@
  %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  %
 
-function mplotSaveFig(fig, outFolder )
+function mplotSaveFig(figH, outFolder )
     
-    SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg"], ["eps", "fig", "png", "jpg"] );
-    SaveFigAs = { "epsc" };
+    SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
 
-    if ~isa( fig, 'matlab.ui.Figure' )
+    if isempty( find(strcmp(who( 'global' ), 'mplotCnf'), 1) )
+        error( "MPLOT ERROR: Missing configuration 'mplotCnf'!\n" );
+    end
+    
+    global mplotCnf;
+    if ~isfield( mplotCnf, 'SaveFig' ) 
+        error( "MPLOT ERROR: Missing configuration field 'mplotCnf.SaveFig'!\n" );
+    end
+
+    if ~mplotCnf.SaveFig || ~isfield( mplotCnf, 'SaveFigAs' ) 
+        return 
+    end
+
+    if ~isa( figH, 'matlab.ui.Figure' )
         error( "MPLOT ERROR: This is not a figure!\n" );
     end
     
-    figName = fig.Name;
+    figName = figH.Name;
 
     if length( figName ) <= 0
         error( "MPLOT ERROR: Figure without 'Name' property!" );
     end
+    
 
-    for kk=1:length( SaveFigAs ) 
-        figType = SaveFigAs{kk};
+    fprintf( "MPLOT: saving '%s'...\n", figName );
+
+    if( exist( outFolder, 'dir' ) == 0 )
+        mkdir( outFolder );
+    end
+
+
+    for kk=1:length( mplotCnf.SaveFigAs ) 
+        figType = mplotCnf.SaveFigAs{kk};
         fName = fullfile( outFolder, sprintf( "%s.%s", figName, SaveFigExt(figType) ) ) ;
-        saveas( fig, fName, figType );
+        saveas( figH, fName, figType );
+    end
+    
+
+    if( mplotCnf.CloseFig )
+        close( figH );
     end
 
 end
