@@ -22,3 +22,5 @@
  %   @brief   mPlot init file.
  %   @details mPlot init file, this script inits plotting code.
  %
+
+set( 0, 'defaulttextInterpreter', 'latex' );
