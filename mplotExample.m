@@ -1,6 +1,6 @@
 %% 
- % Hardware/software co-design di uno stimatore dello stato di batterie 
- % agli ioni di Litio - Copyright (C) 2013, 2014 Salvatore Dello Iacono
+ % mplotUtility: MATLAB Plot Common Comfiguration Utilities 
+ % Copyright (C) 2013, 2024 Salvatore Dello Iacono
  %
  %
  % This is free software; you can redistribute it and/or modify
