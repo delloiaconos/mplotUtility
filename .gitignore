@@ -3,3 +3,6 @@
 *.png
 *.fig
 *.eps
+*.pdf
+./examples/*
+*.asv
