@@ -27,7 +27,7 @@ clear all;
 close all;
 clc;
 
-addpath( './mplot' );
+addpath( '../mplot' );
 
 % Examples Vectors
 x = 1:1:100;
@@ -36,14 +36,14 @@ y2 = 2.1*x;
 
 %% Configure PLOTTING
 run( 'mplotCONFIGS' );
-mplotOutdir = './example/';
+mplotOutdir = './figures/';
 
 %% Begin PLOTTING
 run( 'mplotBEGIN' );
 
 
 %%  *********************************************************************   
- %                         PLOT: Example 1
+ %                         MPLOT: Example 1
  %  *********************************************************************  
 
 figName     = 'Example1';
@@ -72,5 +72,4 @@ clear figName figTitle fig hh ll;
 
 %% END PLOTTING
 run( 'mplotEND' );             
-
-rmpath( './mplot' );
+rmpath( '../mplot' );
