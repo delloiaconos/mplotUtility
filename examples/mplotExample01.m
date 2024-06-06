@@ -18,9 +18,9 @@
  %
 
 %%
- %   @file    mplotExample.m
- %   @brief   mplot Example file.
- %   @details mplot Example file, this script is an example of how to use mplot.
+ %   @file    mplotExample01.m
+ %   @brief   mplot Example 1 file.
+ %   @details mplot Example file, this script is a simple example of how to use mplot.
  %
  
 clear all;
@@ -29,10 +29,7 @@ clc;
 
 addpath( '../mplot' );
 
-% Examples Vectors
-x = 1:1:100;
-y1 = 1.9*x;
-y2 = 2.1*x;
+
 
 %% Configure PLOTTING
 run( 'mplotCONFIGS' );
@@ -46,10 +43,16 @@ run( 'mplotBEGIN' );
  %                         MPLOT: Example 1
  %  *********************************************************************  
 
-figName     = 'Example1';
+% Examples Vectors
+x = 1:1:100;
+y1 = 1.9*x;
+y2 = 2.1*x;
+
+% Figure generation
+figName     = 'Example01';
 figTitle    = 'Example 1';
 
-disp( ['-> Plotting: "', figTitle, '"'] );
+fprintf( ['-> Plotting: "', figTitle, '"'] );
 
 fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     
