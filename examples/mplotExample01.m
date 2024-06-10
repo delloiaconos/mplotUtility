@@ -29,15 +29,12 @@ clc;
 
 addpath( '../mplot' );
 
-
-
 %% Configure PLOTTING
 run( 'mplotCONFIGS' );
 mplotOutdir = './figures/';
 
 %% Begin PLOTTING
 run( 'mplotBEGIN' );
-
 
 %%  *********************************************************************   
  %                         MPLOT: Example 1
@@ -52,7 +49,7 @@ y2 = 2.1*x;
 figName     = 'Example01';
 figTitle    = 'Example 1';
 
-fprintf( ['-> Plotting: "', figTitle, '"'] );
+fprintf( "-> Plotting: '%s'\n", figTitle );
 
 fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     
@@ -70,8 +67,6 @@ fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
 mplotSaveFig( fig, mplotOutdir );
     
 clear figName figTitle fig hh ll;
-
-
 
 %% END PLOTTING
 run( 'mplotEND' );             
