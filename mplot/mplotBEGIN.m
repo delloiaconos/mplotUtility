@@ -24,3 +24,7 @@
  %
 
 set( 0, 'defaulttextInterpreter', 'latex' );
+
+if not( exist( 'mplotcfg', 'var' ) )
+    run( 'mplotCONFIGS' );
+end
