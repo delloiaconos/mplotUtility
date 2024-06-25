@@ -60,7 +60,7 @@ fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     ll = legend('show', 'Location', 'best' );
     set( ll, mplotcfg.opt.Legend{:} );
     set( gca, mplotcfg.opt.Axis{:} );
-    title( figTitle, mplotcfg.opt.Title{:});
+    title( figTitle, mplotcfg.opt.Title{:} );
     xlabel( 'X', mplotcfg.opt.Axis{:} );
     ylabel( 'Y', mplotcfg.opt.Axis{:} );
         
