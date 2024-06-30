@@ -108,3 +108,4 @@ mplotcfg.opt.Arrow = { 'LineWidth',  0.5 };
 mplotcfg.CloseFig               = true;
 mplotcfg.SaveFig                = true;
 mplotcfg.SaveFigAs              = { "epsc", "jpg", "fig", "pdf" };
+mplotcfg.CreateOutFolder        = true;

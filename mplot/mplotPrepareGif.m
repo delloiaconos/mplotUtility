@@ -49,7 +49,11 @@
     fprintf( "MPLOT: Preparing GIF '%s-%05d' ...\n", figName, iter );
 
     if( exist( outFolder, 'dir' ) == 0 )
-        mkdir( outFolder );
+        if mplotcfg.CreateOutFolder
+            mkdir( outFolder );
+        else
+            error( "MPLOT ERROR: Output Folder Does NOT Exsists!" );
+        end
     end
     
     outFolder = fullfile( outFolder, sprintf( "%s_PNGs", figName ) );

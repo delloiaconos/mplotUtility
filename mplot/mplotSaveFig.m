@@ -48,7 +48,11 @@ function mplotSaveFig(figH, outFolder )
     fprintf( "MPLOT: saving '%s'...\n", figName );
 
     if( exist( outFolder, 'dir' ) == 0 )
-        mkdir( outFolder );
+        if mplotcfg.CreateOutFolder
+            mkdir( outFolder );
+        else
+            error( "MPLOT ERROR: Output Folder Does NOT Exsists!" );
+        end
     end
 
 
