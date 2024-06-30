@@ -109,3 +109,4 @@ mplotcfg.CloseFig               = true;
 mplotcfg.SaveFig                = true;
 mplotcfg.SaveFigAs              = { "epsc", "jpg", "fig", "pdf" };
 mplotcfg.CreateOutFolder        = true;
+mplotcfg.OutputFolder           = 'figures';

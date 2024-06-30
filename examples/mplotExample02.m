@@ -43,8 +43,7 @@ run( 'mplotBEGIN' );
 mplotcfg.SaveFigAs              = { "png", "fig" };
 mplotcfg.CloseFig               = false;
 mplotcfg.SaveFig                = true;
-
-mplotOutdir = './figures/';
+mplotcfg.OutputFolder           = './figures/';
 
 %%  *********************************************************************   
  %                         MPLOT: Example 2
@@ -201,7 +200,7 @@ fig = figure( 'Name', figName, 'Position', [100, 100, 1800, 700], ...
         disableDefaultInteractivity( ax(kax) );
     end
 
-mplotSaveFig( fig, mplotOutdir );
+mplotSaveFig( fig, mplotcfg.OutputFolder );
 
 %% END PLOTTING
 run( 'mplotEND' );             

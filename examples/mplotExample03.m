@@ -34,8 +34,6 @@ addpath( '../mplot' );
 % Start mplotUtility
 run( 'mplotBEGIN' );
 
-mplotOutdir = './figures/';
-
 %%  *********************************************************************   
  %                         MPLOT: Example 3
  %  *********************************************************************  
@@ -81,7 +79,7 @@ for tstop=DeltaT:DeltaT:max(t)
     mplotPrepareGif( fig, mplotOutdir, tstop/DeltaT );
 end
 
-mplotSaveGif( figName, mplotOutdir, 'DeleteOrigin', false, 'LoopCount', 2, 'DelayTime', 0.5 );
+mplotSaveGif( figName, mplotcfg.OutputFolder, 'DeleteOrigin', false, 'LoopCount', 2, 'DelayTime', 0.5 );
 clear figName figTitle fig hh tstop imax;
 
 

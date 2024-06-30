@@ -33,8 +33,6 @@ addpath( '../mplot' );
 % Start mplotUtility
 run( 'mplotBEGIN' );
 
-mplotOutdir = './figures/';
-
 %%  *********************************************************************   
  %                         MPLOT: Example 1
  %  *********************************************************************  
@@ -63,7 +61,7 @@ fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     xlabel( 'X', mplotcfg.opt.Axis{:} );
     ylabel( 'Y', mplotcfg.opt.Axis{:} );
         
-mplotSaveFig( fig, mplotOutdir );
+mplotSaveFig( fig, mplotcfg.OutputFolder );
     
 clear figName figTitle fig hh ll;
 
