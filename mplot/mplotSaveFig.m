@@ -20,6 +20,7 @@
  function mplotSaveFig( figH, varargin )
 %   mplotSaveFig( figH )
 %   mplotSaveFig( figH, outFolder )
+%   mplotSaveFig( figH, 'mplotcfg', {CONFIGURATION} )
 %       Exports a prepared figure
 %       
 %   figH: figure handler
@@ -37,7 +38,7 @@
         globcfg = varargin{loc+1};
         vkindex = [vkindex loc loc+1];
     else
-        if isempty( find(strcmp(who( 'global' ), 'mplotcfg'), 1) ) 
+        if isempty( find(strcmp(who( 'global' ), 'mplotcfg' ), 1) ) 
             error( "MPLOT ERROR: Missing configuration 'mplotcfg'!\n" );
         end
 
@@ -53,7 +54,8 @@
         error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
     end
 
-    if nargin-1 == 1 && ( isstring( varargin{1} ) || ischar( varargin{1} ) )
+    if nargin-1 > 1 && ~ismember( 1, vkindex ) && ...
+        ( isstring( varargin{1} ) || ischar( varargin{1} ) )
         outFolder = varargin{1};
     else
         if ~isfield( globcfg, 'OutputFolder' ) 
@@ -79,7 +81,7 @@
     fprintf( "MPLOT: saving '%s'...\n", figName );
 
     if( exist( outFolder, 'dir' ) == 0 )
-        if mplotcfg.CreateOutFolder
+        if globcfg.CreateOutFolder
             mkdir( outFolder );
         else
             error( "MPLOT ERROR: Output Folder Does NOT Exsists!" );
