@@ -33,16 +33,13 @@ clear all;
 close all;
 clc;
 
+%% Configure MPLOT
 addpath( '../mplot' );
 
-%% Configure PLOTTING
-run( 'mplotCONFIGS' );
-mplotOutdir = './figures/';
-
-%% Begin PLOTTING
+% Start mplotUtility
 run( 'mplotBEGIN' );
 
-% Overloading of configurations
+% Configuration Overloadings
 mplotcfg.SaveFigAs              = { "png", "fig" };
 mplotcfg.CloseFig               = false;
 mplotcfg.SaveFig                = true;
@@ -204,8 +201,6 @@ fig = figure( 'Name', figName, 'Position', [100, 100, 1800, 700], ...
     end
 
 mplotSaveFig( fig, mplotOutdir );
-
-
 
 %% END PLOTTING
 run( 'mplotEND' );             

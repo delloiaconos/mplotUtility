@@ -27,14 +27,13 @@ clear all;
 close all;
 clc;
 
+%% Configure MPLOT
 addpath( '../mplot' );
 
-%% Configure PLOTTING
-run( 'mplotCONFIGS' );
-mplotOutdir = './figures/';
-
-%% Begin PLOTTING
+% Start mplotUtility
 run( 'mplotBEGIN' );
+
+mplotOutdir = './figures/';
 
 %%  *********************************************************************   
  %                         MPLOT: Example 1
