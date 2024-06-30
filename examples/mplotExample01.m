@@ -39,7 +39,7 @@ mplotOutdir = './figures/';
  %                         MPLOT: Example 1
  %  *********************************************************************  
 
-% Examples Vectors
+% Data vectors generation
 x = 1:1:100;
 y1 = 1.9*x;
 y2 = 2.1*x;

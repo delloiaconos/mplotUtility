@@ -40,22 +40,24 @@ mplotOutdir = './figures/';
  %                         MPLOT: Example 3
  %  *********************************************************************  
 
-% Examples Vectors
+% Data parameters
 Ts = 0.001;
 DeltaT = 0.05;
 Tmax = 1.0;
+
+% Data vectors generation
 t = 0:Ts:Tmax;
 y1 = 0.7*sin( 2*pi*3*t + pi/4);
 y2 = 1.1*sin( 2*pi*(3+5.0.*t).*t + pi/3);
 
-% Plot preparation
+% Figure generation
 figName     = 'Example3';
 figTitle    = 'Example 3';
 
+fprintf( "-> Plotting: '%s'\n", figTitle );
+
 xLimits = [0,1];
 yLimits = [-1.5, 1.5];
-
-disp( ['-> Plotting: "', figTitle, '"'] );
 
 for tstop=DeltaT:DeltaT:max(t)
     fig = figure( 'Name', figName, mplotcfg.opt.Figure{:}, 'Visible', 'off' );

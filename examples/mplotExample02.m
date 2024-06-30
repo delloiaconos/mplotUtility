@@ -50,14 +50,10 @@ mplotOutdir = './figures/';
  %                         MPLOT: Example 2
  %  *********************************************************************  
 
-figName     = 'mplotExample02';
-figTitle    = 'Example 2';
-
-fprintf( "-> Plotting: '%s'\n", figTitle );
+% Data Parameters
+mult = 10;
 
 % Data vectors generation
-
-mult = 10;
 x = linspace(-2, 2, 100*mult );
 y = abs(sinc(x)); 
 
@@ -68,6 +64,11 @@ y2=y(1:19*mult:end);
 x2=x(1:19*mult:end);
 
 % Figure generation
+figName     = 'mplotExample02';
+figTitle    = 'Example 2';
+
+fprintf( "-> Plotting: '%s'\n", figTitle );
+
 nRows = 1;
 nCols = 2;
 
