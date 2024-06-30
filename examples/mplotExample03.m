@@ -76,7 +76,7 @@ for tstop=DeltaT:DeltaT:max(t)
         ylabel( 'Amplitude', mplotcfg.opt.Axis{:} );
         ylim( yLimits );
 
-    mplotPrepareGif( fig, mplotOutdir, tstop/DeltaT );
+    mplotPrepareGif( fig, mplotcfg.OutputFolder, tstop/DeltaT );
 end
 
 mplotSaveGif( figName, mplotcfg.OutputFolder, 'DeleteOrigin', false, 'LoopCount', 2, 'DelayTime', 0.5 );
