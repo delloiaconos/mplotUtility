@@ -52,9 +52,9 @@ fprintf( "-> Plotting: '%s'\n", figTitle );
 
 fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     
-    plot( x, y1, 'b', 'DisplayName'  , '$I_a$', mplotcfg.opt.Plot{:} );
+    plot( x, y1, 'b', 'DisplayName', '$I_a$', mplotcfg.opt.Plot{:} );
     hold on;
-    plot( x, y2, 'r', 'DisplayName'  , '$I_b$', mplotcfg.opt.Plot{:} );
+    plot( x, y2, 'r', 'DisplayName', '$I_b$', mplotcfg.opt.Plot{:} );
 
     ll = legend('show', 'Location', 'best' );
     set( ll, mplotcfg.opt.Legend{:} );
