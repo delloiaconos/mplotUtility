@@ -60,9 +60,8 @@ fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     title( figTitle, mplotcfg.opt.Title{:} );
     xlabel( 'X', mplotcfg.opt.Axis{:} );
     ylabel( 'Y', mplotcfg.opt.Axis{:} );
-        
-mplotSaveFig( fig );
-    
+
+mplotSaveFig( fig, 'mplotcfg', mplotcfg );
 clear figName figTitle fig hh ll;
 
 %% END PLOTTING

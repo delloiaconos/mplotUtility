@@ -32,39 +32,37 @@
     SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
     
     vkindex = [];
-
-    [~, loc] = ismember( lower('mplotcfg'), lower(varargin) );
-    if loc > 0 && loc < nargin-2
-        mplotcfg = varargin{loc+1};
+    loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && strcmpi( 'mplotcfg', v ), varargin) );
+    if loc > 0 && loc <= nargin-2
+        globcfg = varargin{loc+1};
         vkindex = [vkindex loc loc+1];
-        if ~isa( mplotcfg, 'struct' )
-            error( "MPLOT ERROR: Configuration 'mplotcfg' must be a structure!\n" );
-        end
     else
         if isempty( find(strcmp(who( 'global' ), 'mplotcfg'), 1) ) 
             error( "MPLOT ERROR: Missing configuration 'mplotcfg'!\n" );
         end
-        
-        global mplotcfg;
-        if ~isa( mplotcfg, 'struct' )
-            error( "MPLOT ERROR: Missing configuration!\n" );
-        end
 
-        if ~isfield( mplotcfg, 'SaveFig' ) 
-            error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
-        end
+        global mplotcfg;
+        globcfg = mplotcfg;
+    end
+
+    if ~isa( globcfg, 'struct' )
+        error( "MPLOT ERROR: Configuration 'mplotcfg' must be a structure!\n" );
+    end
+
+    if ~isfield( globcfg, 'SaveFig' ) 
+        error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
     end
 
     if nargin-1 == 1 && ( isstring( varargin{1} ) || ischar( varargin{1} ) )
         outFolder = varargin{1};
     else
-        if ~isfield( mplotcfg, 'OutputFolder' ) 
+        if ~isfield( globcfg, 'OutputFolder' ) 
             error( "MPLOT ERROR: Missing configuration field 'mplotcfg.OutputFolder'!\n" );
         end
-        outFolder = mplotcfg.OutputFolder;
+        outFolder = globcfg.OutputFolder;
     end
     
-    if ~mplotcfg.SaveFig || ~isfield( mplotcfg, 'SaveFigAs' ) 
+    if ~globcfg.SaveFig || ~isfield( globcfg, 'SaveFigAs' ) 
         return 
     end
 
@@ -88,13 +86,13 @@
         end
     end
 
-    for kk=1:length( mplotcfg.SaveFigAs ) 
-        figType = mplotcfg.SaveFigAs{kk};
+    for kk=1:length( globcfg.SaveFigAs ) 
+        figType = globcfg.SaveFigAs{kk};
         fName = fullfile( outFolder, sprintf( "%s.%s", figName, SaveFigExt(figType) ) ) ;
         saveas( figH, fName, figType );
     end
     
-    if( mplotcfg.CloseFig )
+    if( globcfg.CloseFig )
         close( figH );
     end
 
