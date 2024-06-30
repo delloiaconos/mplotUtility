@@ -40,10 +40,8 @@ addpath( '../mplot' );
 run( 'mplotBEGIN' );
 
 % Configuration Overloadings
-mplotcfg.SaveFigAs              = { "png", "fig" };
 mplotcfg.CloseFig               = false;
 mplotcfg.SaveFig                = true;
-mplotcfg.OutputFolder           = './figures/';
 
 %%  *********************************************************************   
  %                         MPLOT: Example 2
@@ -200,7 +198,7 @@ fig = figure( 'Name', figName, 'Position', [100, 100, 1800, 700], ...
         disableDefaultInteractivity( ax(kax) );
     end
 
-mplotSaveFig( fig );
+mplotSaveFig( fig, './figures/', 'SaveFigAs', { "png", "fig" } );
 
 %% END PLOTTING
 run( 'mplotEND' );             
