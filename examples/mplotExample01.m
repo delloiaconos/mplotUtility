@@ -61,7 +61,7 @@ fig = figure( 'Name', figName, mplotcfg.opt.Figure{:} );
     xlabel( 'X', mplotcfg.opt.Axis{:} );
     ylabel( 'Y', mplotcfg.opt.Axis{:} );
 
-mplotSaveFig( fig );
+mplotSaveFig( fig, 'newfolder' );
 clear figName figTitle fig hh ll;
 
 %% END PLOTTING

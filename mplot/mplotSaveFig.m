@@ -32,9 +32,12 @@
       
     SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
     
+    locFields = [ "SaveFigAs", "SaveFig", "CreateOutFolder", "OutputFolder", "CloseFig" ];
+    locOpts = struct();
+
     vkindex = [];
     loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && strcmpi( 'mplotcfg', v ), varargin) );
-    if loc > 0 && loc <= nargin-2
+    if ~isempty(loc) && (loc <= nargin-2)
         globcfg = varargin{loc+1};
         vkindex = [vkindex loc loc+1];
     else
@@ -50,51 +53,60 @@
         error( "MPLOT ERROR: Configuration 'mplotcfg' must be a structure!\n" );
     end
 
-    if ~isfield( globcfg, 'SaveFig' ) 
-        error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
+    if (nargin >= 2) && ~ismember( 1, vkindex ) && ...
+        ( isstring( varargin{1} ) || ischar( varargin{1} ) ) && ... 
+        ~ismember( varargin{1}, locFields )
+        varargin = [{"OutputFolder"}, varargin ];
     end
 
-    if nargin-1 > 1 && ~ismember( 1, vkindex ) && ...
-        ( isstring( varargin{1} ) || ischar( varargin{1} ) )
-        outFolder = varargin{1};
-    else
-        if ~isfield( globcfg, 'OutputFolder' ) 
-            error( "MPLOT ERROR: Missing configuration field 'mplotcfg.OutputFolder'!\n" );
+    for idx=1:length(locFields)
+        field = locFields(idx);
+        loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && strcmpi( field, v ), varargin ) );
+        if ~isempty(loc) && ~ismember(loc, vkindex) && (loc <= nargin-1) 
+            locOpts.(field) = varargin{loc+1};
+            vkindex = [vkindex loc loc+1];
+        elseif isfield( globcfg, field ) 
+            locOpts.(field) = globcfg.(field);
+        else
+            error( "MPLOT ERROR: Missing configuration field '%s'!\n", field );
         end
-        outFolder = globcfg.OutputFolder;
     end
     
-    if ~globcfg.SaveFig || ~isfield( globcfg, 'SaveFigAs' ) 
-        return 
-    end
-
     if ~isa( figH, 'matlab.ui.Figure' )
         error( "MPLOT ERROR: This is not a figure!\n" );
     end
     
     figName = figH.Name;
-
     if length( figName ) <= 0
         error( "MPLOT ERROR: Figure without 'Name' property!" );
     end
-    
-    fprintf( "MPLOT: saving '%s'...\n", figName );
 
-    if( exist( outFolder, 'dir' ) == 0 )
-        if globcfg.CreateOutFolder
-            mkdir( outFolder );
+    if ~locOpts.SaveFig 
+        fprintf( "MPLOT: NOT saving '%s'...\n", figName );
+        return 
+    else 
+        fprintf( "MPLOT: saving '%s'...\n", figName );
+    end
+
+    if ~isfolder( locOpts.OutputFolder ) 
+        if locOpts.CreateOutFolder 
+            mkdir( locOpts.OutputFolder );
         else
             error( "MPLOT ERROR: Output Folder Does NOT Exsists!" );
         end
     end
 
-    for kk=1:length( globcfg.SaveFigAs ) 
-        figType = globcfg.SaveFigAs{kk};
-        fName = fullfile( outFolder, sprintf( "%s.%s", figName, SaveFigExt(figType) ) ) ;
-        saveas( figH, fName, figType );
+    for kk=1:length( locOpts.SaveFigAs ) 
+        figType = locOpts.SaveFigAs{kk};
+        if ismember( figType, SaveFigExt.keys() )
+            fName = fullfile( locOpts.OutputFolder, sprintf( "%s.%s", figName, SaveFigExt(figType) ) ) ;
+            saveas( figH, fName, figType );
+        else
+            fprintf(  "MPLOT WARNING: Unrecognized figure output format '%s'!\n", figType );
+        end
     end
     
-    if( globcfg.CloseFig )
+    if( locOpts.CloseFig )
         close( figH );
     end
 
