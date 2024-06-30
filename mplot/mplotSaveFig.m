@@ -17,19 +17,53 @@
  %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  %
 
-function mplotSaveFig(figH, outFolder )
-    
+ function mplotSaveFig( figH, varargin )
+%   mplotSaveFig( figH )
+%   mplotSaveFig( figH, outFolder )
+%       Exports a prepared figure
+%       
+%   figH: figure handler
+%       Figure Handler to be exported.
+%
+%   outFolder: string output folder
+%       Output Folder where the fig will be saved (overloads the
+%       configuration)
+      
     SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
+    
+    vkindex = [];
 
-    if isempty( find(strcmp(who( 'global' ), 'mplotcfg'), 1) )
-        error( "MPLOT ERROR: Missing configuration 'mplotcfg'!\n" );
+    [~, loc] = ismember( lower('mplotcfg'), lower(varargin) );
+    if loc > 0 && loc < nargin-2
+        mplotcfg = varargin{loc+1};
+        vkindex = [vkindex loc loc+1];
+        if ~isa( mplotcfg, 'struct' )
+            error( "MPLOT ERROR: Configuration 'mplotcfg' must be a structure!\n" );
+        end
+    else
+        if isempty( find(strcmp(who( 'global' ), 'mplotcfg'), 1) ) 
+            error( "MPLOT ERROR: Missing configuration 'mplotcfg'!\n" );
+        end
+        
+        global mplotcfg;
+        if ~isa( mplotcfg, 'struct' )
+            error( "MPLOT ERROR: Missing configuration!\n" );
+        end
+
+        if ~isfield( mplotcfg, 'SaveFig' ) 
+            error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
+        end
+    end
+
+    if nargin-1 == 1 && ( isstring( varargin{1} ) || ischar( varargin{1} ) )
+        outFolder = varargin{1};
+    else
+        if ~isfield( mplotcfg, 'OutputFolder' ) 
+            error( "MPLOT ERROR: Missing configuration field 'mplotcfg.OutputFolder'!\n" );
+        end
+        outFolder = mplotcfg.OutputFolder;
     end
     
-    global mplotcfg;
-    if ~isfield( mplotcfg, 'SaveFig' ) 
-        error( "MPLOT ERROR: Missing configuration field 'mplotcfg.SaveFig'!\n" );
-    end
-
     if ~mplotcfg.SaveFig || ~isfield( mplotcfg, 'SaveFigAs' ) 
         return 
     end
@@ -44,7 +78,6 @@ function mplotSaveFig(figH, outFolder )
         error( "MPLOT ERROR: Figure without 'Name' property!" );
     end
     
-
     fprintf( "MPLOT: saving '%s'...\n", figName );
 
     if( exist( outFolder, 'dir' ) == 0 )
@@ -55,14 +88,12 @@ function mplotSaveFig(figH, outFolder )
         end
     end
 
-
     for kk=1:length( mplotcfg.SaveFigAs ) 
         figType = mplotcfg.SaveFigAs{kk};
         fName = fullfile( outFolder, sprintf( "%s.%s", figName, SaveFigExt(figType) ) ) ;
         saveas( figH, fName, figType );
     end
     
-
     if( mplotcfg.CloseFig )
         close( figH );
     end

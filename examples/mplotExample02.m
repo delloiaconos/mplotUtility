@@ -200,7 +200,7 @@ fig = figure( 'Name', figName, 'Position', [100, 100, 1800, 700], ...
         disableDefaultInteractivity( ax(kax) );
     end
 
-mplotSaveFig( fig, mplotcfg.OutputFolder );
+mplotSaveFig( fig );
 
 %% END PLOTTING
 run( 'mplotEND' );             
