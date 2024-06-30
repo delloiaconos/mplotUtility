@@ -79,7 +79,7 @@ for tstop=DeltaT:DeltaT:max(t)
     mplotPrepareGif( fig, mplotcfg.OutputFolder, tstop/DeltaT );
 end
 
-mplotSaveGif( figName, mplotcfg.OutputFolder, 'DeleteOrigin', false, 'LoopCount', 2, 'DelayTime', 0.5 );
+mplotSaveGif( figName, 'DeleteOrigin', false, 'LoopCount', 2, 'DelayTime', 0.5 );
 clear figName figTitle fig hh tstop imax;
 
 
