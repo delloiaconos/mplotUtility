@@ -29,13 +29,15 @@
 %   outFolder: string output folder
 %       Output Folder where the fig will be saved (overloads the
 %       configuration)
-      
-    SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
     
-    locFields = [ "SaveFigAs", "SaveFig", "CreateOutFolder", "OutputFolder", "CloseFig" ];
+    % Local Configuration Dictionary and structure
+    SaveFigExt = dictionary( ["epsc", "fig", "png", "jpg", "pdf"], ["eps", "fig", "png", "jpg", "pdf"] );
+    locFields = [ "SaveFig", "SaveFigAs", "CreateOutFolder", "OutputFolder", "CloseFig" ];
     locOpts = struct();
-
+    
     vkindex = [];
+
+    % Check if configuration has been passed or get global configuration
     loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && strcmpi( 'mplotcfg', v ), varargin) );
     if ~isempty(loc) && (loc <= nargin-2)
         globcfg = varargin{loc+1};
@@ -49,16 +51,19 @@
         globcfg = mplotcfg;
     end
 
+    % Check if globcfg is the correct type
     if ~isa( globcfg, 'struct' )
         error( "MPLOT ERROR: Configuration 'mplotcfg' must be a structure!\n" );
     end
 
+    % Check if the first argument is the output folder
     if (nargin >= 2) && ~ismember( 1, vkindex ) && ...
         ( isstring( varargin{1} ) || ischar( varargin{1} ) ) && ... 
         ~ismember( varargin{1}, locFields )
         varargin = [{"OutputFolder"}, varargin ];
     end
 
+    % Check if any field is present
     for idx=1:length(locFields)
         field = locFields(idx);
         loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && strcmpi( field, v ), varargin ) );
@@ -72,6 +77,7 @@
         end
     end
     
+    % Check if the first argument is the correct type
     if ~isa( figH, 'matlab.ui.Figure' )
         error( "MPLOT ERROR: This is not a figure!\n" );
     end
