@@ -57,6 +57,7 @@ fprintf( "-> Plotting: '%s'\n", figTitle );
 xLimits = [0,1];
 yLimits = [-1.5, 1.5];
 
+count = 1;
 for tstop=DeltaT:DeltaT:max(t)
     fig = figure( 'Name', figName, mplotcfg.opt.Figure{:}, 'Visible', 'off' );
         
@@ -76,12 +77,12 @@ for tstop=DeltaT:DeltaT:max(t)
         ylabel( 'Amplitude', mplotcfg.opt.Axis{:} );
         ylim( yLimits );
 
-    mplotPrepareGif( fig, mplotcfg.OutputFolder, tstop/DeltaT );
+    mplotPrepareGif( fig, mplotcfg.OutputFolder, count );
+    count = count + 1;
 end
 
 mplotSaveGif( figName, 'DeleteOrigin', false, 'LoopCount', 2, 'DelayTime', 0.5 );
 clear figName figTitle fig hh tstop imax;
-
 
 %% END PLOTTING
 run( 'mplotEND' );             
