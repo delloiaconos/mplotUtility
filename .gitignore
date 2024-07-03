@@ -1,8 +1,9 @@
-
+./examples/*
 *.jpg
 *.png
 *.fig
 *.eps
 *.pdf
-./examples/*
+*.gif
+
 *.asv
