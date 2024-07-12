@@ -62,9 +62,9 @@ for tstop=DeltaT:DeltaT:max(t)
     fig = figure( 'Name', figName, mplotcfg.opt.Figure{:}, 'Visible', 'off' );
         
         imax = find( t <= tstop, 1, 'last' );
-        plot( t(1:imax), y1(1:imax), 'b', 'DisplayName'  , '$y_1(t)$', mplotcfg.opt.Plot{:} );
+        plot( t(1:imax), y1(1:imax), 'b', 'DisplayName', '$y_1(t)$', mplotcfg.opt.Plot{:} );
         hold on;
-        plot( t(1:imax), y2(1:imax), 'r', 'DisplayName'  , '$y_2(t)$', mplotcfg.opt.Plot{:} );
+        plot( t(1:imax), y2(1:imax), 'r', 'DisplayName', '$y_2(t)$', mplotcfg.opt.Plot{:} );
     
         legend('show',  mplotcfg.opt.Legend{:}, 'Location', 'northeast' );
         
