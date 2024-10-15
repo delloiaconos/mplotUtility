@@ -38,7 +38,7 @@
     vkindex = [];
 
     % Check if configuration has been passed or get global configuration
-    loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && strcmpi( 'mplotcfg', v ), varargin) );
+    loc =  find( cellfun(@(v) ( isstring(v) || ischar(v) ) && all( strcmpi( 'mplotcfg', v ) ), varargin) );
     if ~isempty(loc) && (loc <= nargin-2)
         globcfg = varargin{loc+1};
         vkindex = [vkindex loc loc+1];
